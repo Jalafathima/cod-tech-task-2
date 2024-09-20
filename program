@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+void convertTemperature(float temp, char scale, char targetScale) {
+    float convertedTemp;
+
+    if (scale == 'C') {
+        if (targetScale == 'F') {
+            convertedTemp = (temp * 9 / 5) + 32;
+            printf("%.2f Celsius is %.2f Fahrenheit\n", temp, convertedTemp);
+        } else if (targetScale == 'K') {
+            convertedTemp = temp + 273.15;
+            printf("%.2f Celsius is %.2f Kelvin\n", temp, convertedTemp);
+        }
+    } else if (scale == 'F') {
+        if (targetScale == 'C') {
+            convertedTemp = (temp - 32) * 5 / 9;
+            printf("%.2f Fahrenheit is %.2f Celsius\n", temp, convertedTemp);
+        } else if (targetScale == 'K') {
+            convertedTemp = (temp - 32) * 5 / 9 + 273.15;
+            printf("%.2f Fahrenheit is %.2f Kelvin\n", temp, convertedTemp);
+        }
+    } else if (scale == 'K') {
+        if (targetScale == 'C') {
+            convertedTemp = temp - 273.15;
+            printf("%.2f Kelvin is %.2f Celsius\n", temp, convertedTemp);
+        } else if (targetScale == 'F') {
+            convertedTemp = (temp - 273.15) * 9 / 5 + 32;
+            printf("%.2f Kelvin is %.2f Fahrenheit\n", temp, convertedTemp);
+        }
+    } else {
+        printf("Invalid scale entered.\n");
+    }
+}
+
+int main() {
+    float temp;
+    char scale, targetScale;
+
+    printf("Enter the temperature (e.g., 100 C, 212 F, 373 K): ");
+    scanf("%f %c", &temp, &scale);
+
+    printf("Convert to (C, F, K): ");
+    scanf(" %c", &targetScale);
+
+    convertTemperature(temp, scale, targetScale);
+
+    return 0;
+}
